@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>post</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  
+  <app-loading *ngIf="!post"></app-loading>
+
+    <ion-card *ngIf="post as postData">
+      <img src="https://ucarecdn.com/{{ postID }}/-/preview/{{ effect }}-/scale_crop/200x200/center/">
+      <ion-card-content>
+          <p>{{ postData.desc }}</p>
+          
+      </ion-card-content>
+      <ion-card-content>
+        <ion-item (click)="Heart()">
+           <ion-icon [name]="heartType"></ion-icon>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+    
+</ion-content>

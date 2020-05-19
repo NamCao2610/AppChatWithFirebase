@@ -1,0 +1,39 @@
+<ion-header>
+
+  <ion-toolbar>
+    <ion-title>chatMessage</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <div id="chatMessage">
+    <div class="message" *ngFor="let message of messages" [class]="message.specialMessage ? 'message special' : 'message'">
+      <div [class]="message.username == username ? 'innerMessage messageRight' : 'innerMessage messageLeft'">
+          <div class="profilePic">
+            <ion-avatar slot="start">
+              <img src="https://ucarecdn.com//{{ message.profilePic }}/-/scale_crop/100x100/center/">
+            </ion-avatar>
+          </div>
+          <div class="username">{{message.username}}</div>
+          <div class="message">{{message.message}}</div>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div id="footer">
+        <div class="elem"><ion-input type="text" [(ngModel)]="message"></ion-input></div>
+        <div class="elem">
+          <ion-button (click)="sendMessage()">
+            <ion-icon slot="icon-only" name="send"></ion-icon>
+          </ion-button>
+        </div>
+    </div>
+  </ion-toolbar>
+</ion-footer>

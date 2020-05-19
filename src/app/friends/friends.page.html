@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>friends</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="title">
+    <ion-card-content>
+      <ion-item>
+        <ion-avatar slot="start"><img src="https://ucarecdn.com/{{ profilePic }}/-/scale_crop/100x100/center/"/></ion-avatar>
+        <ion-label color="danger">
+          <h2>{{ username }}</h2>
+          <h5>Danh sach ban be</h5>
+        </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <!--Thanh tim kiem-->
+
+  <ion-searchbar [(ngModel)]="searchQuery" (input)="searchFriend($event)" placeholder="Search"></ion-searchbar>
+
+ 
+  <!--List ban be tim kiem-->
+
+  <ion-list>
+    <ion-item *ngFor="let p of allUsername">
+     
+      <ion-avatar slot="start"><img src="https://ucarecdn.com//{{ p.profilePic }}/-/scale_crop/100x100/center/"/></ion-avatar>
+      <ion-label>{{p.username}}</ion-label>
+      
+      <ion-button expand="block" fill="solid" slot="end" *ngIf="checkFriend(p.username) != p.username" (click)="addFriend(p.id)">Add Friend</ion-button>
+      <ion-button expand="block" fill="outline" slot="end" *ngIf="checkFriend(p.username) == p.username">Da la ban be</ion-button>
+      
+     
+    </ion-item>
+  </ion-list>
+ 
+   <!--List ban be dang cho ket ban-->
+   <ion-card>
+    <ion-card-content>
+      <p style="color:green;">Ban be dang cho</p>
+    </ion-card-content>
+  </ion-card>
+  <ion-list>
+    <ion-item *ngFor="let p of listRequest">
+      <ion-avatar slot="start"><img src="https://ucarecdn.com//{{ p.profilePic }}/-/scale_crop/100x100/center/"/></ion-avatar>
+      <ion-label>{{p.username}}</ion-label>
+      <ion-button expand="block" fill="solid" slot="end" (click)="requestFriend(p.username, p.profilePic, p.id)">Chap nhan</ion-button>
+      <ion-button expand="block" fill="solid" slot="end" (click)="deniedFriend(p.username, p.profilePic, p.id)">Tu choi</ion-button>
+    </ion-item>
+  </ion-list>
+  
+
+  <!--Danh sach ban be-->
+  <ion-card>
+    <ion-card-content>
+      <p style="color:orangered;">Danh sach ban be</p>
+    </ion-card-content>
+  </ion-card>
+  <ion-list>
+    <ion-item-sliding *ngFor="let p of listFriend">
+
+      <ion-item>
+        <ion-avatar slot="start"><img src="https://ucarecdn.com//{{ p.friendsPic }}/-/scale_crop/100x100/center/"/></ion-avatar>
+        <ion-label>{{p.friendsName}}</ion-label>
+        <ion-button expand="block" fill="outline" slot="end">Da la ban be</ion-button>
+     </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="removeFriend(p.friendsName,p.friendsPic,p.friendsid)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
+        <ion-item-option (click)="routerInforFriend(p.friendsid)">
+          <ion-icon slot="icon-only" name="star"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+  
+    </ion-item-sliding>
+  </ion-list>
+  
+</ion-content>

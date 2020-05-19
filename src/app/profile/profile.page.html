@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <!--Loading khi chua co gi-->
+  <app-loading *ngIf="!username"></app-loading>
+  <!--Thong tin va anh dai dien-->
+    <div id="profile-info" *ngIf="username">
+      
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12" class="user-image">
+                <img src="https://ucarecdn.com/{{ profilePic }}/-/scale_crop/100x100/center/">
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" class="user-info">
+              <p class="name">{{ username }}</p>
+              <ion-button class="button" shape="round" color="primary" routerLink="/tabs/edit">Edit-Profile</ion-button>
+         </ion-col>
+          </ion-row>
+        </ion-grid>
+    </div>
+
+    <!--Card chua nhat ky va anh-->
+  <ion-card>
+  <ion-card-content>
+    <ion-label color="success">Anh cac hoat dong cua ban</ion-label>
+  </ion-card-content>
+</ion-card>
+
+<!--Khi khong co anh thi loading-->
+<app-loading *ngIf="!userPosts"></app-loading>
+
+    <div id="images">
+     <div class="image" *ngFor="let post of userPosts ">
+        
+          <img (click)="goTo(post)" class="main-image" src="https://ucarecdn.com/{{ post }}/-/scale_crop/200x200/center/" />
+        
+     </div>
+    </div>
+</ion-content>

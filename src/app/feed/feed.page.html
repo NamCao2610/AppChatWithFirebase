@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>feed</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <p style="color:green;">Bai viet gan day</p>
+    </ion-card-content>
+  </ion-card>
+  <app-loading *ngIf="!allPosts"></app-loading>
+  <div class="feedStatus">
+     <ion-card *ngFor="let p of allPosts">
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="https://ucarecdn.com/{{ p.profilePic }}/-/scale_crop/100x100/center/">
+          </ion-avatar>
+          <ion-label style="color:orangered">
+            <h2>{{ p.author }}</h2>
+          </ion-label>
+        </ion-item>
+        
+        <img *ngIf="!p.feed" src="https://ucarecdn.com/{{ p.image }}/-/preview/{{p.effect}}-/scale_crop/200x200/center/" />
+          <ion-card-content *ngIf="!p.feed">
+              <p>{{p.desc}}</p>
+          </ion-card-content>
+          <ion-card-content *ngIf="p.feed">
+            <p>{{p.feed}}</p>
+          </ion-card-content>
+          <ion-card-content>
+            <ion-item (click)="Heart(p.likes)">
+              <ion-icon [name]="heartType"></ion-icon>
+            </ion-item>
+          </ion-card-content>
+     </ion-card>
+  </div>
+</ion-content>

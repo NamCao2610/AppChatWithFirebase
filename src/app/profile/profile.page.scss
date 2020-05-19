@@ -1,0 +1,32 @@
+#images {
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: auto;
+}
+
+.image {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.main-image{
+	width: 130px;
+	height:130px;
+}
+.user-image img{
+	padding: 3px;
+    border: 1px #d4d4d4 solid;
+	border-radius: 50%;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+}
+.user-image {
+	display: flex;
+	justify-content: center;
+}
+.user-info {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}

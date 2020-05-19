@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>pagechat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+     <ion-card class="title">
+    <ion-card-content>
+      <ion-item>
+        <ion-avatar slot="start"><img src="https://ucarecdn.com/{{ profilePic }}/-/scale_crop/100x100/center/"/></ion-avatar>
+        <ion-label color="danger">
+          <h2>{{ username }}</h2>
+          <h5>Danh sach chat voi ban be</h5>
+        </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+    </ion-list-header>
+
+    <ion-card>
+      <ion-card-content>
+        <p style="color:green;">Tim kiem ban be</p>
+      </ion-card-content>
+    </ion-card>
+    
+    <ion-searchbar [(ngModel)]="searchQuery" (input)="searchFriend($event)" placeholder="Search"></ion-searchbar>
+    <!--list sau khi tim kiem-->
+    <div *ngFor="let p of allFriends">
+      <ion-item (click)="Chat(p.nameRoom)">
+       
+        <ion-avatar slot="start"><img src="https://ucarecdn.com//{{ p.friendsPic }}/-/scale_crop/100x100/center/"/></ion-avatar>
+        <ion-label>{{p.friendsName}}</ion-label>
+        
+      </ion-item>
+    </div>
+    <!--Danh sach ban be chay-->
+    <ion-card>
+      <ion-card-content>
+        <p style="color:orangered;">Danh sach chat</p>
+      </ion-card-content>
+    </ion-card>
+
+  <div *ngFor='let p of listFriends'>
+    <ion-item (click)="Chat(p.nameRoom)">
+      <ion-avatar slot="start">
+        <img src="https://ucarecdn.com//{{ p.friendsPic }}/-/scale_crop/100x100/center/">
+      </ion-avatar>
+      <ion-label>
+        <h2 style="color: orangered;">{{p.friendsName}}</h2>
+        <h3>I'm a big deal</h3>
+        <p></p>
+      </ion-label>
+    </ion-item>
+  </div>
+    
+  </ion-list>
+</ion-content>
